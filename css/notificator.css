@@ -1,0 +1,170 @@
+:root {
+
+    --popup-translate-x: -50%;
+    --popup-translate-y: -50%;
+
+    --font-size-normal: 1rem;
+    --font-size-small: .8rem;
+    --font-size-big: 1.2rem;
+    --popup-background-color: #29303C;
+    --popup-min-width: 250px;
+    --popup-max-width: 400px;
+    --popup-border-radius: 5px;
+}
+
+.notificator-wrap {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    left: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.notificator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(var(--popup-translate-x), var(--popup-translate-y));
+    color: #FFFFFF;
+    font-family: "Open Sans", sans-serif;
+    font-size: var(--font-size-normal);
+    background-color: var(--popup-background-color);
+    padding: 1.5rem 1.5rem;
+    box-sizing: border-box;
+    border-radius: calc(var(--popup-border-radius) * 2);
+    letter-spacing: 0.03rem;
+    min-width: var(--popup-min-width);
+    max-width: var(--popup-max-width);
+    animation: pop-in .2s forwards ease-in;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+    text-align: center;
+}
+
+.notificator.top-right {
+    position: relative;
+    left: auto;
+    background-color: rgba(255,25,25,0.3);
+    font-size: var(--font-size-small);
+    --popup-translate-x: 0;
+    --popup-translate-y: 0;
+    margin-bottom: 20px;
+}
+
+.notificator.closing {
+    animation: pop-out .2s forwards ease-in;
+}
+
+.notificator .close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+.notificator .close:before {
+    content: 'x';
+}
+
+.notificator .message {
+    font-size: var(--font-size-normal);
+}
+
+.notificator .input {
+    background-color: rgba(255, 255, 255, 0.1);
+    font-size: var(--font-size-small);
+    margin-top: .8rem;
+    padding: .4rem .8rem;
+    outline: none;
+    text-align: left;
+    border-radius: var(--popup-border-radius);
+    border: 2px inset transparent;
+}
+
+.notificator .input.error {
+    border: 2px solid #962c2c;
+    animation: shake-o .3s forwards ease-in;
+}
+
+.notificator .container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 1.1rem;
+}
+
+.notificator .container.single {
+    justify-content: center;
+}
+
+.notificator .container div {
+    flex-basis: calc(50% - 5px);
+}
+
+.notificator .button {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    background-color: rgba(255,255,255,0.08);
+    text-align: center;
+    font-size: .8rem;
+    padding: .4rem 0;
+    border-radius: var(--popup-border-radius);
+    cursor: pointer;
+    transition: background-color 0.1s;
+    flex-basis: 100%;
+}
+
+.notificator .button:hover {
+    background-color: rgba(255,255,255,0.16);
+}
+
+@keyframes pop-in {
+    0% {
+        transform: translate(var(--popup-translate-x), var(--popup-translate-y)) scale(.7);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        opacity: .3;
+    }
+    80% {
+        transform: translate(var(--popup-translate-x), var(--popup-translate-y)) scale(1.1);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        opacity: .8;
+    }
+    100% {
+        transform: translate(var(--popup-translate-x), var(--popup-translate-y)) scale(1);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+        opacity: 1;
+    }
+}
+
+@keyframes pop-out {
+    0% {
+        transform: translate(var(--popup-translate-x), var(--popup-translate-y)) scale(1);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+        opacity: 1;
+    }
+    20% {
+        transform: translate(var(--popup-translate-x), var(--popup-translate-y)) scale(1.1);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        opacity: .5;
+    }
+    100% {
+        transform: translate(var(--popup-translate-x), var(--popup-translate-y)) scale(.7);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        opacity: 0;
+    }
+}
+
+@keyframes shake-o {
+    0% { transform: translateX(-8px) }
+    30% { transform: translateX(6px) }
+    60% { transform: translateX(-2px) }
+    100% { transform: translateX(0px) }
+}
+
+@media (prefers-reduced-motion) {
+    .notificator {
+        animation: none;
+    }
+    .notificator.closing {
+        animation: none;
+    }
+}
