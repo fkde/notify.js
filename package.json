@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build-prompt": "esbuild src/Modules/prompt.mjs --bundle --minify --sourcemap --target=chrome58,firefox57,safari12,edge16 --outfile=build/notify.prompt.min.js",
+    "build-alert": "esbuild src/Modules/alert.mjs --bundle --minify --sourcemap --target=chrome58,firefox57,safari12,edge16 --outfile=build/notify.alert.min.js",
+    "build-all": "esbuild src/Modules --bundle --minify --sourcemap --target=chrome58,firefox57,safari12,edge16 --outfile=build/notify.min.js"
+  },
+  "devDependencies": {
+    "esbuild": "0.20.2"
+  }
+}

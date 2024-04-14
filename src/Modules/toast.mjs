@@ -1,3 +1,5 @@
+import translate from "../Translator.mjs";
+
 class Toast {
 
     constructor(message, options = {}) {
@@ -14,11 +16,13 @@ class Toast {
 
         const timeout = this.options.timeout || 3000;
 
-        const content = `<div class="toast notificator top-right">${this.message}</div>`;
+        const translatedMessage = translate(this.message);
+
+        const content = `<div class="toast notificator top-right">${translatedMessage}</div>`;
         this.container = (new DOMParser()).parseFromString(content, 'text/html').body.firstElementChild;
 
         if (this.options.targetContainer instanceof HTMLDivElement) {
-            this.options.targetContainer.appendChild(this.container);
+            this.options.targetContainer.prepend(this.container);
         } else {
             document.body.appendChild(this.container);
         }
@@ -43,18 +47,21 @@ export default function toast(message, options) {
         return new Toast(message, options);
     }
 
-    const wrap = `<div class="notificator-wrap"></div>`;
-    const wrapDom = (new DOMParser()).parseFromString(wrap, 'text/html').body.firstElementChild;
-    document.body.appendChild(wrapDom);
+    let wrap = document.querySelector('.notificator-wrap');
+
+    if (!(wrap instanceof HTMLDivElement)) {
+        const wrapTemplate = `<div class="notificator-wrap"></div>`;
+        wrap = (new DOMParser()).parseFromString(wrapTemplate, 'text/html').body.firstElementChild;
+        document.body.appendChild(wrap);
+    }
 
     for (let i in Object.keys(message)) {
 
         const item = message[i];
 
         setTimeout(function() {
-            options = {...options, targetContainer: wrapDom};
-            new Toast(item, options);
-        }, 1500);
+            new Toast(item, {...options, targetContainer: wrap});
+        }, 50);
 
     }
 

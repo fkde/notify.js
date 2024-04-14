@@ -1,6 +1,6 @@
 import Validator from "../Validation/Validator.mjs";
 import NotEmpty from "../Validation/Validators/NotEmpty.mjs";
-import toast from "./toast.js";
+import toast from "./toast.mjs";
 
 class Prompt {
 
@@ -50,6 +50,14 @@ class Prompt {
             if (validatorResult.length) {
                 inputElement.classList.add('error');
                 inputElement.focus();
+                const range = document.createRange();
+                const sel = window.getSelection();
+                if (inputElement.textContent.length) {
+                    range.setStart(inputElement.childNodes[0], inputElementValue.length);
+                    range.collapse(true);
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                }
                 toast(validatorResult);
                 return;
             }
@@ -78,6 +86,7 @@ class Prompt {
                 if (validator instanceof Validator) {
                     if (false === validator.validate(value)) {
                         errors.push(validator.errorMessage);
+                        return errors;
                     }
                 }
             }

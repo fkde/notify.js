@@ -11,6 +11,12 @@ class Validator {
         throw new Error('Must be implemented by children.');
     }
 
+    getErrorMessage() {
+
+        return this.errorMessage;
+
+    }
+
 }
 
 export default Validator;

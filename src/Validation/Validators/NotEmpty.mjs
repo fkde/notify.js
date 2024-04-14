@@ -3,7 +3,7 @@ import Validator from "../Validator.mjs";
 
 class NotEmpty extends Validator {
 
-    errorMessage = 'Must not be empty';
+    errorMessage = 'The field must not be empty.';
 
     validate(value) {
         return (!!value.length);

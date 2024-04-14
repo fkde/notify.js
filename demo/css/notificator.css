@@ -19,6 +19,7 @@
     left: auto;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .notificator {
@@ -43,12 +44,20 @@
 
 .notificator.top-right {
     position: relative;
+    top: auto;
     left: auto;
     background-color: rgba(255,25,25,0.3);
     font-size: var(--font-size-small);
     --popup-translate-x: 0;
     --popup-translate-y: 0;
     margin-bottom: 20px;
+    animation: slide-in .2s forwards ease-out;
+    overflow: hidden;
+}
+
+.notificator.top-right.closing {
+    animation: slide-out .2s forwards ease-in;
+
 }
 
 .notificator.closing {
@@ -150,6 +159,34 @@
         transform: translate(var(--popup-translate-x), var(--popup-translate-y)) scale(.7);
         box-shadow: 0 1px 3px rgba(0,0,0,0.3);
         opacity: 0;
+    }
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(100%);
+        transform-origin: top;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        opacity: .3;
+    }
+    100% {
+        transform: translateX(0);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-out {
+    0% {
+        transform: translateX(0);
+        transform-origin: top;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        opacity: .3;
     }
 }
 
