@@ -1,7 +1,7 @@
 import Validator from "../Validator.mjs";
 
 
-class Number extends Validator {
+class IsNumber extends Validator {
 
     errorMessage = 'Value must be numeric.';
 
@@ -11,4 +11,4 @@ class Number extends Validator {
 
 }
 
-export default Number;
+export default IsNumber;
