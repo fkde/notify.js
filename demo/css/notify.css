@@ -12,7 +12,7 @@
     --popup-border-radius: 5px;
 }
 
-.notificator-wrap {
+.notify-toast-container {
     position: absolute;
     right: 20px;
     top: 20px;
@@ -22,7 +22,7 @@
     overflow: hidden;
 }
 
-.notificator {
+.notify {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -42,7 +42,7 @@
     text-align: center;
 }
 
-.notificator.top-right {
+.notify.top-right {
     position: relative;
     top: auto;
     left: auto;
@@ -55,30 +55,30 @@
     overflow: hidden;
 }
 
-.notificator.top-right.closing {
+.notify.top-right.closing {
     animation: slide-out .2s forwards ease-in;
 
 }
 
-.notificator.closing {
+.notify.closing {
     animation: pop-out .2s forwards ease-in;
 }
 
-.notificator .close {
+.notify .close {
     position: absolute;
     right: 10px;
     top: 5px;
 }
 
-.notificator .close:before {
+.notify .close:before {
     content: 'x';
 }
 
-.notificator .message {
+.notify .message {
     font-size: var(--font-size-normal);
 }
 
-.notificator .input {
+.notify .input {
     background-color: rgba(255, 255, 255, 0.1);
     font-size: var(--font-size-small);
     margin-top: .8rem;
@@ -89,27 +89,27 @@
     border: 2px inset transparent;
 }
 
-.notificator .input.error {
+.notify .input.error {
     border: 2px solid #962c2c;
     animation: shake-o .3s forwards ease-in;
 }
 
-.notificator .container {
+.notify .container {
     display: flex;
     width: 100%;
     justify-content: space-between;
     margin-top: 1.1rem;
 }
 
-.notificator .container.single {
+.notify .container.single {
     justify-content: center;
 }
 
-.notificator .container div {
+.notify .container div {
     flex-basis: calc(50% - 5px);
 }
 
-.notificator .button {
+.notify .button {
     border-bottom: 1px solid rgba(0,0,0,0.2);
     border-top: 1px solid rgba(255,255,255,0.1);
     background-color: rgba(255,255,255,0.08);
@@ -122,7 +122,7 @@
     flex-basis: 100%;
 }
 
-.notificator .button:hover {
+.notify .button:hover {
     background-color: rgba(255,255,255,0.16);
 }
 
@@ -198,10 +198,10 @@
 }
 
 @media (prefers-reduced-motion) {
-    .notificator {
+    .notify {
         animation: none;
     }
-    .notificator.closing {
+    .notify.closing {
         animation: none;
     }
 }

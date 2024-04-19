@@ -3,7 +3,7 @@ import Validator from "../Validator.mjs";
 
 class Range extends Validator {
 
-    errorMessage = `Only numbers between %s and %s are allowed.`;
+    errorMessage = `Only numbers between %{min} and %{max} are allowed.`;
 
     constructor(min, max) {
         super();
