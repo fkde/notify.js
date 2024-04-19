@@ -42,7 +42,7 @@ class Translator {
 
 }
 
-export default function translate(key, lang = 'de') {
+export default function translate(key, lang = 'en') {
 
     const translator = new Translator(lang);
     return translator.translate(key);

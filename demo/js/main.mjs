@@ -1,9 +1,9 @@
-import prompt from "../../src/Modules/prompt.mjs";
-import alert from "../../src/Modules/alert.mjs";
-import NotEmpty from "../../src/Validation/Validators/NotEmpty.mjs";
-import Range from "../../src/Validation/Validators/Range.mjs";
-import Enum from "../../src/Validation/Validators/Enum.mjs";
-import IsString from "../../src/Validation/Validators/IsString.js";
+import prompt from "../../src/modules/Prompt.mjs";
+import alert from "../../src/modules/Alert.mjs";
+import NotEmpty from "../../src/Validators/NotEmpty.mjs";
+import Range from "../../src/Validators/Range.mjs";
+import Enum from "../../src/Validators/Enum.mjs";
+import IsString from "../../src/Validators/IsString.js";
 
 const questions = [
     {
