@@ -1,8 +1,13 @@
 {
+  "name": "notify.js",
+  "description": "Providing tools for adjustable Alert, Prompt and Toast messages",
+  "author": "Flo Knapp <office@florianknapp.de>",
+  "version": "0.2.1",
+  "homepage": "https://github.com/fkde/notify.js",
+  "bugs": "https://github.com/fkde/notify.js/issues",
   "scripts": {
-    "build-prompt": "esbuild src/Modules/prompt.mjs --bundle --minify --sourcemap --target=chrome58,firefox57,safari12,edge16 --outfile=build/notify.prompt.min.js",
-    "build-alert": "esbuild src/Modules/alert.mjs --bundle --minify --sourcemap --target=chrome58,firefox57,safari12,edge16 --outfile=build/notify.alert.min.js",
-    "build-all": "esbuild src/Modules --bundle --minify --sourcemap --target=chrome58,firefox57,safari12,edge16 --outfile=build/notify.min.js"
+    "build-prompt": "esbuild src/Modules/Prompt.mjs --bundle --minify --sourcemap --target=chrome58,firefox57,safari12,edge16 --outfile=build/notify.prompt.min.js",
+    "build-alert": "esbuild src/Modules/Alert.mjs --bundle --minify --sourcemap --target=chrome58,firefox57,safari12,edge16 --outfile=build/notify.alert.min.js"
   },
   "devDependencies": {
     "esbuild": "0.20.2"

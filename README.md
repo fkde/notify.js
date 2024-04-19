@@ -2,8 +2,8 @@
 
 ---
 
-| ⚠ Notice | This library is still work in progress.   |
-| -------- |-------------------------------------------|
+| ⚠ Notice | This library is still work in progress. |
+|----------|-----------------------------------------|
 
 ---
 
@@ -16,6 +16,16 @@ original notification mechanisms, but with styling!
 
 Pick your preferred version from the build directory and include it in your website, 
 preferably at the end of the page, just above the closing `</body>` tag.
+
+These snippets are also only working properly as modules, here is an example on how to include them:
+
+```html
+        // ...
+        <script type="module" src="./js/main.mjs"></script>
+        // ...
+    </body>
+</html>
+```
 
 ## Usage
 
