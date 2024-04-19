@@ -1,30 +1,24 @@
 import Validator from "../Validator.mjs";
 import NotEmpty from "../Validators/NotEmpty.mjs";
 import toast from "./Toast.mjs";
+import Notify from "../Notify.js";
 
-class Prompt {
+class Prompt extends Notify {
 
-    #defaultOptions = {
+    defaultOptions = {
         style: {
-            backgroundColor: '#29303C'
+            backgroundColor: 'red'
         },
         showInput: false,
-        confirmButtonText: 'Ja',
-        cancelButtonText: 'Nein',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
         showCancelButton: true,
         validators: [
             new NotEmpty()
         ]
     };
 
-    constructor(message, options, promise) {
-        this.message   = message;
-        this.options   = {...this.#defaultOptions, ...options};
-        this.promise   = promise;
-        this.container = null;
-    }
-
-    bindClickEvents() {
+    bind() {
 
         const inputElement  = this.container.querySelector('.input');
         const buttonConfirm = this.container.querySelector('.confirm');
@@ -140,11 +134,7 @@ class Prompt {
 export default prompt = (message, options) => {
 
     return new Promise((resolve, reject) => {
-
-        const prompt = new Prompt(message, options, {resolve, reject});
-        prompt.render();
-        prompt.bindClickEvents();
-
+        new Prompt(message, options, {resolve, reject});
     });
 
 };

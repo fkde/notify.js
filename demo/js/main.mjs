@@ -39,7 +39,6 @@ const renderQuestions = async () => {
         const result = await prompt(question.title, {
             showInput: true,
             confirmButtonText: 'Next',
-            cancelButtonText: 'Cancel',
             validators: [
                 ...question.validators
             ]

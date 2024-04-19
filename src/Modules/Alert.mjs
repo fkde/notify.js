@@ -1,41 +1,18 @@
-class Alert {
+import Notify from "../Notify.js";
 
-    #defaultOptions = {
+class Alert extends Notify{
+
+    defaultOptions = {
         style: {
             backgroundColor: '#29303C'
         },
-        confirmButtonText: 'Ok'
+        confirmButtonText: 'Okay'
     };
 
-    constructor(message, options, promise) {
-
-        this.message   = message;
-        this.options   = {...this.#defaultOptions, ...options};
-        this.promise   = promise;
-        this.container = null;
-
-    }
-
-    render () {
-
-        const content = `
-                <div class="notify alert">
-                    ${this.message}
-                    <div class="container single">
-                        <div class="button confirm">Ok</div>
-                    </div>
-                </div>`;
-
-        this.container = (new DOMParser()).parseFromString(content, 'text/html').body.firstElementChild;
-
-        document.body.appendChild(this.container);
-
-    };
-
-    bindClickEvents() {
+    bind() {
 
         const alert = document.querySelector('.alert')
-        const buttonOk = document.querySelector('.alert .confirm');
+        const buttonOk = alert.querySelector('.confirm');
 
         document.addEventListener('keydown', (e) => {
 
@@ -58,6 +35,22 @@ class Alert {
 
     };
 
+    render () {
+
+        const content = `
+                <div class="notify alert">
+                    ${this.message}
+                    <div class="container single">
+                        <div class="button confirm">${this.options.confirmButtonText}</div>
+                    </div>
+                </div>`;
+
+        this.container = (new DOMParser()).parseFromString(content, 'text/html').body.firstElementChild;
+
+        document.body.appendChild(this.container);
+
+    };
+
     remove () {
         const container = document.querySelector('.alert');
         container.classList.add('closing');
@@ -73,11 +66,7 @@ class Alert {
 export default alert = (message, options) => {
 
     return new Promise((resolve, reject) => {
-
-        const alert = new Alert(message, options,{resolve, reject});
-        alert.render();
-        alert.bindClickEvents();
-
+        new Alert(message, options,{resolve, reject});
     });
 
 };

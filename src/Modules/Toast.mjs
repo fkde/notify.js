@@ -1,21 +1,10 @@
 import translate from "../Translator.mjs";
+import Notify from "../Notify.js";
 
-class Toast {
+class Toast extends Notify {
 
-    #defaultOptions = {
-        style: {
-            backgroundColor: '#29303C'
-        }
-    };
-
-    constructor(message, options = {}) {
-
-        this.message = message;
-        this.options = {...this.#defaultOptions, ...options};
-        this.container = null;
-
-        this.render();
-
+    bind() {
+        // Nothing to do
     }
 
     render() {
@@ -34,14 +23,18 @@ class Toast {
         }
 
         setTimeout(() => {
-
-            this.container.classList.add('closing');
-
-            this.container.addEventListener('animationend', (e) => {
-                e.target.parentNode.removeChild(e.target);
-            });
-
+            this.remove();
         }, timeout);
+
+    }
+
+    remove() {
+
+        this.container.classList.add('closing');
+
+        this.container.addEventListener('animationend', (e) => {
+            e.target.parentNode.removeChild(e.target);
+        });
 
     }
 
